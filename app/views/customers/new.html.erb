@@ -1,0 +1,32 @@
+<h1>New Customer</h1>
+
+<%= form_with model: @customer do |form| %>
+    <div>
+        <%= form.label :name %><br>
+        <%= form.text_field :name %>
+    </div>
+
+    <div>
+        <%= form.label :shorthand %><br>
+        <%= form.text_field :shorthand %>
+    </div>
+
+    <div>
+        <%= form.label :railroad %><br>
+        <%= form.select :railroad, ["UP", "BNSF"] %>
+    </div>
+
+    <div>
+        <%= form.label :local %><br>
+        <%= form.text_field :local %>
+    </div>
+
+    <div>
+        <%= form.label :routingTag %><br>
+        <%= form.text_field :routingTag %>
+    </div>
+
+    <div>
+        <%= form.submit %>
+    </div>
+<% end %>
