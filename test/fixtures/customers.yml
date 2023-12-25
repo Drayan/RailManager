@@ -2,6 +2,10 @@
 
 one:
   name: MyString
+  routing_tag: MyString
+  destinations: MyString
 
 two:
   name: MyString
+  routing_tag: MyString
+  destinations: MyString
