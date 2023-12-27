@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_25_232753) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_26_234500) do
+  create_table "car_models", force: :cascade do |t|
+    t.string "FQDN"
+    t.integer "car_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["car_type_id"], name: "index_car_models_on_car_type_id"
+  end
+
+  create_table "car_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "customers", force: :cascade do |t|
     t.string "name"
     t.string "routing_tag"
@@ -19,4 +33,20 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_25_232753) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "order_rules", force: :cascade do |t|
+    t.string "commodity"
+    t.integer "max_cars"
+    t.boolean "is_loaded"
+    t.integer "manutention_time"
+    t.integer "customer_id"
+    t.integer "car_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["car_type_id"], name: "index_order_rules_on_car_type_id"
+    t.index ["customer_id"], name: "index_order_rules_on_customer_id"
+  end
+
+  add_foreign_key "car_models", "car_types"
+  add_foreign_key "order_rules", "car_types"
+  add_foreign_key "order_rules", "customers"
 end

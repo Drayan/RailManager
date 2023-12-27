@@ -1,0 +1,13 @@
+<%= form_with model: [ @car, @model ] do |form| %>
+<div class="mb-3">
+    <%= form.label :FQDN, { class: "form-label "} %>
+    <%= form.text_field :FQDN, { class: "form-control" } %>
+    <% @model.errors.full_messages_for(:FQDN).each do |message| %>
+    <div><%= message %></div>
+    <% end %>
+</div>
+
+<div>
+    <%= form.submit class: "btn btn-primary mb-3" %>
+</div>
+<% end %>

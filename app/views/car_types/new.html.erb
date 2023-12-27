@@ -1,0 +1,12 @@
+<h1>New Car Type</h1>
+
+<%= form_with model: @car do |form| %>
+<div class="mb-3">
+    <%= form.label :name, { class: "form-label "} %>
+    <%= form.text_field :name, { class: "form-control" } %>
+</div>
+
+<div>
+    <%= form.submit "New", class: "btn btn-primary mb-3" %>
+</div>
+<% end %>

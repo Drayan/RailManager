@@ -1,4 +1,8 @@
 class OrderRule < ApplicationRecord
     belongs_to :customer
-    has_one :car_type
+    belongs_to :car_type
+
+    validates :max_cars, presence: true
+    validates :manutention_time, presence: true
+    validates :commodity, presence: true
 end

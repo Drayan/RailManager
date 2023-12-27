@@ -1,0 +1,17 @@
+<h1><%= @car.name %></h1>
+<%= link_to "<< Back", car_types_path %>
+
+<h3>Model list</h3>
+<%= link_to "New Model", new_car_type_car_model_path(@car) %>
+<ul>
+    <% @car.car_models.each do |model| %>
+    <li>
+        <%= model.FQDN %>
+        <%= link_to "Edit", edit_car_type_car_model_path(@car, model)%>
+        <%= link_to "Delete", car_type_car_model_path(@car, model), data: {
+            turbo_method: :delete,
+            turbo_confirm: "Are you sure?"
+        }%>
+        </li>
+    <% end %>
+</ul>

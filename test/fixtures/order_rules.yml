@@ -2,20 +2,12 @@
 
 one:
   commodity: MyString
-  dropoff_state: 1
-  pickup_state: 1
   max_cars: 1
-  current_cars: 1
-  last_order: 2023-08-16 16:16:19
-  last_delivery: 2023-08-16 16:16:19
-  hazmat: 1
+  is_loaded: false
+  manutention_time: 1
 
 two:
   commodity: MyString
-  dropoff_state: 1
-  pickup_state: 1
   max_cars: 1
-  current_cars: 1
-  last_order: 2023-08-16 16:16:19
-  last_delivery: 2023-08-16 16:16:19
-  hazmat: 1
+  is_loaded: false
+  manutention_time: 1

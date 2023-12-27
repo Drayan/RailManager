@@ -1,9 +1,16 @@
 <h1>Customers</h1>
+<%= link_to "<< Back", root_path %>
 
+<%= link_to "New", new_customer_path %>
 <ul>
     <% @customers.each do |customer| %>
     <li>
-        <%= customer.name %>
+        <%= link_to customer.name, customer_path(customer) %>
+        <%= link_to "Edit", edit_customer_path(customer) %>
+        <%= link_to "Delete", customer_path(customer), data: {
+            turbo_method: :delete,
+            turbo_confirm: "Are you sure?"
+        }%>
     </li>
     <% end %>
 </ul>

@@ -1,18 +1,18 @@
-<h1>(<%= @customer.shorthand %>)&nbsp;<%= @customer.name %></h1>
+<h1><%= @customer.name %></h1>
+<%= link_to "<< Back", customers_path %>
 
-<div>
-    <span>Railroad:</span>&nbsp;<span><%= @customer.railroad %></span><br>
-    <span>Local:</span>&nbsp;<span><%= @customer.local %></span><br>
-    <span>Tag:</span>&nbsp;<span><%= @customer.routingTag %></span>
-</div>
+<h3>Order rules</h3>
+<%= link_to "New", new_customer_order_rule_path(@customer) %>
 
-<h2>Order Rules</h2>
-<div>
-    <ul>
-        <% @customer.order_rules.each do |rule| %>
-            <li><%= rule.commodity %></li>
-        <% end %>
-    </ul>
-</div>
-
-<%= link_to "Add new order rule", new_customer_order_rule_path(@customer), class: "btn btn-primary" %>
+<ul>
+<% @customer.order_rules.each do |rule| %>
+    <li>
+        <%= rule.commodity %> | <%= rule.max_cars %> <%= rule.car_type.name %>
+        <%= link_to "Edit", edit_customer_order_rule_path(@customer, rule) %>
+        <%= link_to "Delete", customer_order_rule_path(@customer, rule), data: {
+            turbo_method: :delete,
+            turbo_confirm: "Are you sure?"
+        }%>
+    </li>
+<% end %>
+</ul>

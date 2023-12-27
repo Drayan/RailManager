@@ -1,0 +1,42 @@
+<%= form_with model: [ @customer, @rule ] do |form| %>
+<div class="mb-3">
+    <%= form.label :car_type_id, { class: "form-label"} %>
+    <%= form.select :car_type_id, CarType.order(:name).map{ |type| [type.name, type.id] }, { class: "form-control"}%>
+</div>
+
+<div class="mb-3">
+    <%= form.label :commodity, { class: "form-label "} %>
+    <%= form.text_field :commodity, { class: "form-control" } %>
+    <% @rule.errors.full_messages_for(:commodity).each do |message| %>
+    <div><%= message %></div>
+    <% end %>
+</div>
+
+<div class="mb-3">
+    <%= form.label :max_cars, { class: "form-label "} %>
+    <%= form.number_field :max_cars, { class: "form-control" } %>
+    <% @rule.errors.full_messages_for(:max_cars).each do |message| %>
+    <div><%= message %></div>
+    <% end %>
+</div>
+
+<div class="mb-3">
+    <%= form.label :manutention_time, { class: "form-label "} %>
+    <%= form.number_field :manutention_time, { class: "form-control" } %>
+    <% @rule.errors.full_messages_for(:manutention_time).each do |message| %>
+    <div><%= message %></div>
+    <% end %>
+</div>
+
+<div class="mb-3">
+    <%= form.label :is_loaded, { class: "form-check-label "} %>
+    <%= form.check_box :is_loaded, { class: "form-check-input" } %>
+    <% @rule.errors.full_messages_for(:is_loaded).each do |message| %>
+    <div><%= message %></div>
+    <% end %>
+</div>
+
+<div>
+    <%= form.submit class: "btn btn-primary mb-3" %>
+</div>
+<% end %>

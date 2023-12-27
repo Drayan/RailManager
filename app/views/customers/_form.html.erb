@@ -1,0 +1,29 @@
+<%= form_with model: @customer do |form| %>
+<div class="mb-3">
+    <%= form.label :name, { class: "form-label "} %>
+    <%= form.text_field :name, { class: "form-control" } %>
+    <% @customer.errors.full_messages_for(:name).each do |message| %>
+    <div><%= message %></div>
+    <% end %>
+</div>
+
+<div class="mb-3">
+    <%= form.label :routing_tag, { class: "form-label "} %>
+    <%= form.text_field :routing_tag, { class: "form-control" } %>
+    <% @customer.errors.full_messages_for(:routing_tag).each do |message| %>
+    <div><%= message %></div>
+    <% end %>
+</div>
+
+<div class="mb-3">
+    <%= form.label :destinations, { class: "form-label "} %>
+    <%= form.text_field :destinations, { class: "form-control" } %>
+    <% @customer.errors.full_messages_for(:destinations).each do |message| %>
+    <div><%= message %></div>
+    <% end %>
+</div>
+
+<div>
+    <%= form.submit class: "btn btn-primary mb-3" %>
+</div>
+<% end %>
