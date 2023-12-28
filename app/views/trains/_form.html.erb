@@ -1,0 +1,42 @@
+<!-- <%= turbo_frame_tag "form" do %> -->
+<%= form_with model: @train do |form| %>
+<div class="mb-3">
+    <%= form.label :routing_tag, { class: "form-label "} %>
+    <%= form.text_field :routing_tag, { class: "form-control" } %>
+    <% @train.errors.full_messages_for(:routing_tag).each do |message| %>
+    <div><%= message %></div>
+    <% end %>
+</div>
+
+<div class="mb-3">
+    <%= form.label :length, { class: "form-label "} %>
+    <%= form.number_field :length, { class: "form-control" } %>
+    <% @train.errors.full_messages_for(:length).each do |message| %>
+    <div><%= message %></div>
+    <% end %>
+</div>
+
+<div class="mb-3">
+    <%= form.label :weigth, { class: "form-label "} %>
+    <%= form.number_field :weigth, { class: "form-control" } %>
+    <% @train.errors.full_messages_for(:weigth).each do |message| %>
+    <div><%= message %></div>
+    <% end %>
+</div>
+
+<div class="mb-3">
+    <%= form.label :yard_id, { class: "form-label"} %>
+    <%= form.collection_select :yard_id, Yard.order(:name), :id, :name, { prompt: "- Select yard -", selected: @yard.id }, { class: "form-control", data: { controller: "yard-select", action: "change->yard-select#selected" } } %>
+</div>
+
+<div class="mb-3">
+    <%= @yard.name %>
+    <%= form.label :track_id, { class: "form-label"} %>
+    <%= form.collection_select :track_id, @yard.tracks.order(:name), :id, :name, { prompt: "- Select track -" }, { class: "form-control" } %>
+</div>
+
+<div>
+    <%= form.submit class: "btn btn-primary mb-3" %>
+</div>
+<% end %>
+<!-- <% end %> -->

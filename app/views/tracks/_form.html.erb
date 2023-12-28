@@ -1,0 +1,26 @@
+<%= form_with model: @track do |form| %>
+<div class="mb-3">
+    <%= form.label :name, { class: "form-label "} %>
+    <%= form.text_field :name, { class: "form-control" } %>
+    <% @track.errors.full_messages_for(:name).each do |message| %>
+    <div><%= message %></div>
+    <% end %>
+</div>
+
+<div class="mb-3">
+    <%= form.label :length, { class: "form-label "} %>
+    <%= form.number_field :length, { class: "form-control" } %>
+    <% @track.errors.full_messages_for(:length).each do |message| %>
+    <div><%= message %></div>
+    <% end %>
+</div>
+
+<div class="mb-3">
+    <%= form.label :yard_id, { class: "form-label"} %>
+    <%= form.collection_select :yard_id, Yard.order(:name), :id, :name, { include_blank: true }, { class: "form-control" } %>
+</div>
+
+<div>
+    <%= form.submit class: "btn btn-primary mb-3" %>
+</div>
+<% end %>

@@ -16,4 +16,8 @@ Rails.application.routes.draw do
   resources :car_types do
     resources :car_models
   end
+
+  resources :yards
+  resources :tracks
+  resources :trains
 end

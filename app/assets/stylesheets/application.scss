@@ -14,3 +14,13 @@
  *= require_self
  */
 @import "bootstrap";
+
+body,
+html {
+    background-color: darkslategrey;
+    color: wheat;
+}
+
+a {
+    color: wheat;
+}

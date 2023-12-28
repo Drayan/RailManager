@@ -1,0 +1,16 @@
+<h1>Yards</h1>
+
+<%= link_to "<< Back", root_path %>
+<%= link_to "New", new_yard_path %>
+<ul>
+    <% @yards.each do |yard| %>
+    <li>
+        <%= link_to yard.name, yard_path(yard) %>
+        <%= link_to "Edit", edit_yard_path(yard) %>
+        <%= link_to "Delete", yard_path(yard), data: {
+            turbo_method: :delete,
+            turbo_confirm: "Are you sure?"
+        }%>
+    </li>
+    <% end %>
+</ul>
