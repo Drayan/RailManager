@@ -48,6 +48,10 @@ gem "bootsnap", require: false
 gem "bootstrap"
 gem "sassc-rails"
 
+# Using sidekiq for background job processing
+gem "sidekiq"
+gem "sidekiq-scheduler"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]

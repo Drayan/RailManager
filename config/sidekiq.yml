@@ -1,0 +1,10 @@
+---
+  :concurrency: 5
+  :verbose: true
+  :queues:
+    - default
+
+  :scheduler:
+      :schedule:
+          OrdersGenerationJob:
+              every: 1 hours

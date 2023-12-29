@@ -1,0 +1,12 @@
+<h1>Orders</h1>
+
+<ul>
+  <% @orders.each do |order| %>
+  <li>
+    For '<%= order.order_rule.customer.name %>', <%= order.ordered_count %> cars of <%= order.order_rule.commodity %>
+  </li>
+  <% end %>
+</ul>
+<% if @orders.size == 0 %>
+  <h4>No orders yet.</h4>
+<% end %>

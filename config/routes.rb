@@ -1,3 +1,6 @@
+require 'sidekiq/web'
+require 'sidekiq-scheduler/web'
+
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -13,6 +16,8 @@ Rails.application.routes.draw do
     resources :order_rules
   end
 
+  resources :orders
+
   resources :car_types do
     resources :car_models
   end
@@ -20,4 +25,6 @@ Rails.application.routes.draw do
   resources :yards
   resources :tracks
   resources :trains
+
+  mount Sidekiq::Web => '/dev/jobs'
 end

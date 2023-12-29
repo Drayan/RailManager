@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_27_175829) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_29_023654) do
   create_table "car_models", force: :cascade do |t|
     t.string "FQDN"
     t.integer "car_type_id"
@@ -46,6 +46,20 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_27_175829) do
     t.index ["customer_id"], name: "index_order_rules_on_customer_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.integer "ordered_count"
+    t.integer "status"
+    t.string "routing_tag"
+    t.integer "train_id"
+    t.integer "track_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "order_rule_id", null: false
+    t.index ["order_rule_id"], name: "index_orders_on_order_rule_id"
+    t.index ["track_id"], name: "index_orders_on_track_id"
+    t.index ["train_id"], name: "index_orders_on_train_id"
+  end
+
   create_table "tracks", force: :cascade do |t|
     t.string "name"
     t.integer "length"
@@ -75,6 +89,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_27_175829) do
   add_foreign_key "car_models", "car_types"
   add_foreign_key "order_rules", "car_types"
   add_foreign_key "order_rules", "customers"
+  add_foreign_key "orders", "order_rules"
+  add_foreign_key "orders", "tracks"
+  add_foreign_key "orders", "trains"
   add_foreign_key "tracks", "yards"
   add_foreign_key "trains", "tracks"
 end
