@@ -1,0 +1,50 @@
+<%= form_with model: @bp do |form| %>
+  <div class="mb-3">
+    <%= form.label :routing_tag, { class: "form-label "} %>
+    <%= form.text_field :routing_tag, { class: "form-control" } %>
+    <% @bp.errors.full_messages_for(:routing_tag).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :destination, { class: "form-label "} %>
+    <%= form.text_field :destination, { class: "form-control" } %>
+    <% @bp.errors.full_messages_for(:destination).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :avg_cars, { class: "form-label "} %>
+    <%= form.number_field :avg_cars, { class: "form-control" } %>
+    <% @bp.errors.full_messages_for(:avg_cars).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :max_weight, { class: "form-label "} %>
+    <%= form.number_field :max_weight, { class: "form-control" } %>
+    <% @bp.errors.full_messages_for(:max_weight).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :max_length, { class: "form-label "} %>
+    <%= form.number_field :max_length, { class: "form-control" } %>
+    <% @bp.errors.full_messages_for(:max_length).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :spawn_point_id, { class: "form-label"} %>
+    <%= form.select :spawn_point_id, SpawnPoint.all.map{|k,v| [k.track.name, k.id]}, { }, { class: "form-select" } %>
+  </div>
+
+  <div>
+    <%= form.submit class: "btn btn-primary mb-3" %>
+  </div>
+<% end %>

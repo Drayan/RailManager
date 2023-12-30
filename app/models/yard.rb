@@ -1,6 +1,7 @@
 class Yard < ApplicationRecord
     has_many :tracks
     has_many :customers
+    belongs_to :yard, optional: true
 
     enum :yard_type, [ :local_yard, :classification_yard ]
 

@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   resources :yards
   resources :tracks
   resources :trains
+  resources :spawn_points
+  resources :supply_train_blueprints
 
   mount Sidekiq::Web => '/dev/jobs'
 end

@@ -1,0 +1,2 @@
+module SupplyTrainBlueprintHelper
+end

@@ -1,0 +1,15 @@
+<%= form_with model: @point do |form| %>
+  <div class="mb-3">
+    <%= form.label :track_id, { class: "form-label"} %>
+    <%= form.select :track_id, Track.where(:yard_id => nil).map{|k,v| [k.name, k.id]}, {}, { class: "form-select" } %>
+  </div>
+
+  <div>
+    <%= form.label :allow_supply_train, { class: "form-label"} %>
+    <%= form.check_box :allow_supply_train, { class: "form-check"} %>
+  </div>
+
+  <div>
+    <%= form.submit class: "btn btn-primary mb-3" %>
+  </div>
+<% end %>

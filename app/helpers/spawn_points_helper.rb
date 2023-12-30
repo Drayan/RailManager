@@ -1,0 +1,2 @@
+module SpawnPointsHelper
+end

@@ -1,0 +1,16 @@
+<h1>Spawn points</h1>
+
+<%= link_to "<< Back", root_path %>
+<%= link_to "New", new_spawn_point_path %>
+
+<% if @points.size != 0 %>
+  <ul>
+    <% @points.each do |point| %>
+      <li>
+        <%= point.track.name %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <h4>No spawn points yet.</h4>
+<% end %>
