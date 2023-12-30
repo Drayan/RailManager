@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_29_023654) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_30_032543) do
   create_table "car_models", force: :cascade do |t|
     t.string "FQDN"
     t.integer "car_type_id"
@@ -31,6 +31,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_29_023654) do
     t.string "destinations"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "yard_id"
+    t.index ["yard_id"], name: "index_customers_on_yard_id"
   end
 
   create_table "order_rules", force: :cascade do |t|
@@ -60,6 +62,26 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_29_023654) do
     t.index ["train_id"], name: "index_orders_on_train_id"
   end
 
+  create_table "spawn_points", force: :cascade do |t|
+    t.integer "track_id", null: false
+    t.boolean "allow_supply_train", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["track_id"], name: "index_spawn_points_on_track_id"
+  end
+
+  create_table "supply_train_blueprints", force: :cascade do |t|
+    t.string "routing_tag", null: false
+    t.string "destination"
+    t.integer "avg_cars", null: false
+    t.integer "max_length", null: false
+    t.integer "max_weight", null: false
+    t.integer "spawn_point_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["spawn_point_id"], name: "index_supply_train_blueprints_on_spawn_point_id"
+  end
+
   create_table "tracks", force: :cascade do |t|
     t.string "name"
     t.integer "length"
@@ -84,14 +106,20 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_29_023654) do
     t.string "routing_tag"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "yard_type"
+    t.integer "yard_id"
+    t.index ["yard_id"], name: "index_yards_on_yard_id"
   end
 
   add_foreign_key "car_models", "car_types"
+  add_foreign_key "customers", "yards"
   add_foreign_key "order_rules", "car_types"
   add_foreign_key "order_rules", "customers"
   add_foreign_key "orders", "order_rules"
   add_foreign_key "orders", "tracks"
   add_foreign_key "orders", "trains"
+  add_foreign_key "spawn_points", "tracks"
+  add_foreign_key "supply_train_blueprints", "spawn_points"
   add_foreign_key "tracks", "yards"
   add_foreign_key "trains", "tracks"
 end

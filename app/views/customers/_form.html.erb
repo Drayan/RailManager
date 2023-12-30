@@ -23,6 +23,11 @@
     <% end %>
 </div>
 
+  <div class="mb-3">
+    <%= form.label :yard_id, "Local yard", { class: "form-label"} %>
+    <%= form.collection_select :yard_id, Yard.local_yard.order(:name), :id, :name, { include_blank: true }, { class: "form-control" } %>
+  </div>
+
 <div>
     <%= form.submit class: "btn btn-primary mb-3" %>
 </div>

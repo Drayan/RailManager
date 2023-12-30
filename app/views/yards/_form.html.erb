@@ -1,21 +1,33 @@
 <%= form_with model: @yard do |form| %>
-<div class="mb-3">
+  <div class="mb-3">
     <%= form.label :name, { class: "form-label "} %>
     <%= form.text_field :name, { class: "form-control" } %>
     <% @yard.errors.full_messages_for(:name).each do |message| %>
     <div><%= message %></div>
     <% end %>
-</div>
+  </div>
 
-<div class="mb-3">
+  <div class="mb-3">
     <%= form.label :routing_tag, { class: "form-label "} %>
     <%= form.text_field :routing_tag, { class: "form-control" } %>
     <% @yard.errors.full_messages_for(:routing_tag).each do |message| %>
     <div><%= message %></div>
     <% end %>
-</div>
+  </div>
 
-<div>
+  <div class="mb-3">
+    <%= form.label :yard_type, { class: "form-label" } %>
+    <%= form.select :yard_type, Yard.yard_types.map{ |k, v| [k.titleize, k] }, {}, { class: "form-select" } %>
+  </div>
+
+
+  <div class="mb-3">
+    <%= form.label :yard_id, "Serving yard", { class: "form-label"} %>
+    <%= form.collection_select :yard_id, Yard.classification_yard.order(:name), :id, :name, { include_blank: true }, { class: "form-control" } %>
+  </div>
+
+
+  <div>
     <%= form.submit class: "btn btn-primary mb-3" %>
-</div>
+  </div>
 <% end %>

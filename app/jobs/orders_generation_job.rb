@@ -21,7 +21,7 @@ class OrdersGenerationJob < ApplicationJob
         order = Order.new
         order.ordered_count = number_of_cars
         order.order_rule_id = r.id
-        order.status = 1
+        order.status = :pending
         order.routing_tag = "#{c.routing_tag}"
         order.save
       end

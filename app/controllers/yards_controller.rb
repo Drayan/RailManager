@@ -14,6 +14,10 @@ class YardsController < ApplicationController
     def create
         @yard = Yard.new(yard_params)
 
+        if @yard.classification_yard?
+            @yard.yard_id = nil
+        end
+
         if @yard.save
             redirect_to yards_path
         else
@@ -21,8 +25,26 @@ class YardsController < ApplicationController
         end
     end
 
+    def edit
+        @yard = Yard.find(params[:id])
+    end
+
+    def update
+        @yard = Yard.find(params[:id])
+
+        if @yard.classification_yard?
+            @yard.yard_id = nil
+        end
+
+        if @yard.update(yard_params)
+            redirect_to yards_path
+        else
+            render :edit, status: :unprocessable_entity
+        end
+    end
+
     private
     def yard_params
-        params.require(:yard).permit(:name, :routing_tag)
+        params.require(:yard).permit(:name, :routing_tag, :yard_type, :yard_id)
     end
 end
