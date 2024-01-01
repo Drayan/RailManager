@@ -1,18 +1,31 @@
-<h1><%= @customer.name %></h1>
-<%= link_to "<< Back", customers_path %>
+<div class="card mb-3">
+  <h5 class="card-header">
+      <%= @customer.name %>
+  </h5>
+  <div class="card-body">
 
-<h3>Order rules</h3>
-<%= link_to "New", new_customer_order_rule_path(@customer) %>
+  </div>
+</div>
 
-<ul>
-<% @customer.order_rules.each do |rule| %>
-    <li>
-        <%= rule.commodity %> | <%= rule.max_cars %> <%= rule.car_type.name %>
-        <%= link_to "Edit", edit_customer_order_rule_path(@customer, rule) %>
-        <%= link_to "Delete", customer_order_rule_path(@customer, rule), data: {
+<div class="card">
+  <h5 class="card-header">
+    <span>Order rules</span>
+    <%= link_to new_customer_order_rule_path(@customer), { class: "float-end btn btn-primary" } do %>
+      New
+    <% end %>
+  </h5>
+  <div class="card-body">
+    <ul>
+      <% @customer.order_rules.each do |rule| %>
+        <li>
+          <%= rule.commodity %> | <%= rule.max_cars %> <%= rule.car_type.name %>
+          <%= link_to "Edit", edit_customer_order_rule_path(@customer, rule) %>
+          <%= link_to "Delete", customer_order_rule_path(@customer, rule), data: {
             turbo_method: :delete,
             turbo_confirm: "Are you sure?"
-        }%>
-    </li>
-<% end %>
-</ul>
+          }%>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

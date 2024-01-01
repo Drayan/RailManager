@@ -298,6 +298,7 @@ DEPENDENCIES
   debug
   importmap-rails
   jbuilder
+  nokogiri
   puma (>= 5.0)
   rails (~> 7.1.2)
   sassc-rails

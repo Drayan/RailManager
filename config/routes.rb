@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   root "application#index"
+  get "/dashboard" => "application#dashboard"
 
   resources :customers do
     resources :order_rules
@@ -25,6 +26,7 @@ Rails.application.routes.draw do
   resources :yards
   resources :tracks
   resources :trains
+  post "/trains/spawn" => "trains#spawn_train"
   resources :spawn_points
   resources :supply_train_blueprints
 

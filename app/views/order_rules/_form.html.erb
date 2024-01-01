@@ -1,7 +1,7 @@
 <%= form_with model: [ @customer, @rule ] do |form| %>
 <div class="mb-3">
     <%= form.label :car_type_id, { class: "form-label"} %>
-    <%= form.collection_select :car_type_id, CarType.order(:name), :id, :name %>
+    <%= form.collection_select :car_type_id, CarType.order(:name), :id, :name, { }, { class: "form-select" } %>
 </div>
 
 <div class="mb-3">

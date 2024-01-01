@@ -10,12 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_30_032543) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_31_184257) do
   create_table "car_models", force: :cascade do |t|
     t.string "FQDN"
     t.integer "car_type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "empty_weight"
+    t.decimal "max_weight"
+    t.decimal "length"
+    t.decimal "coupler_offset"
+    t.decimal "bolster_length"
     t.index ["car_type_id"], name: "index_car_models_on_car_type_id"
   end
 

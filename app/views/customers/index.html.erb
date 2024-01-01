@@ -1,16 +1,37 @@
-<h1>Customers</h1>
-<%= link_to "<< Back", root_path %>
+<div class="card">
+  <h5 class="card-header">
+    <span class="clearfix">
+      <span class="text-uppercase">Customers</span>
+      <%= link_to new_customer_path, { class: "float-end btn btn-primary" } do %>
+        New
+      <% end %>
+    </span>
+  </h5>
 
-<%= link_to "New", new_customer_path %>
-<ul>
-    <% @customers.each do |customer| %>
-    <li>
-        <%= link_to customer.name, customer_path(customer) %>
-        <%= link_to "Edit", edit_customer_path(customer) %>
-        <%= link_to "Delete", customer_path(customer), data: {
+  <div class="card-body">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Local</th>
+          <th>Yard</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @customers.order(:name).each do |customer| %>
+      <% tags = customer.routing_tag.split(' ') %>
+        <tr>
+          <td><%= link_to "(#{tags[-1]}) #{customer.name}", customer_path(customer) %></td>
+          <td><%= tags[-2] %></td>
+          <td><%= customer.yard&.name %></td>
+          <td><%= link_to "Delete", customer_path(customer), data: {
             turbo_method: :delete,
             turbo_confirm: "Are you sure?"
-        }%>
-    </li>
-    <% end %>
-</ul>
+          }%></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

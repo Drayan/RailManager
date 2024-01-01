@@ -1,18 +1,31 @@
-<h1><%= @yard.name %></h1>
-<%= link_to "<< Back", yards_path %>
+<div class="card mb-3">
+  <h5 class="card-header">
+    <%= @yard.name %>
+  </h5>
+  <div class="card-body">
 
-<h3>Tracks</h3>
-<%= link_to "New", new_track_path %>
+  </div>
+</div>
 
-<ul>
-<% @yard.tracks.each do |track| %>
-    <li>
-        <%= track.name %>
-        <%= link_to "Edit", edit_track_path(track) %>
-        <%= link_to "Delete", track_path(track), data: {
-            turbo_method: :delete,
-            turbo_confirm: "Are you sure?"
-        }%>
-    </li>
-<% end %>
-</ul>
+<div class="card">
+  <h5 class="card-header">
+    <span>Tracks</span>
+    <%= link_to new_track_path, { class: "float-end btn btn-primary" } do %>
+      New
+    <% end %>
+  </h5>
+  <div class="card-body">
+    <ul>
+    <% @yard.tracks.each do |track| %>
+        <li>
+            <%= track.name %>
+            <%= link_to "Edit", edit_track_path(track) %>
+            <%= link_to "Delete", track_path(track), data: {
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure?"
+            }%>
+        </li>
+    <% end %>
+    </ul>
+  </div>
+</div>
