@@ -20,11 +20,10 @@
       </thead>
       <tbody>
       <% @customers.order(:name).each do |customer| %>
-      <% tags = customer.routing_tag.split(' ') %>
         <tr>
-          <td><%= link_to "(#{tags[-1]}) #{customer.name}", customer_path(customer) %></td>
-          <td><%= tags[-2] %></td>
-          <td><%= customer.yard&.name %></td>
+          <td><%= link_to "(#{customer.routing_tag}) #{customer.name}", customer_path(customer) %></td>
+          <td><%= customer.local_train&.name %></td>
+          <td><%= customer.local_train&.yard&.name %></td>
           <td><%= link_to "Delete", customer_path(customer), data: {
             turbo_method: :delete,
             turbo_confirm: "Are you sure?"

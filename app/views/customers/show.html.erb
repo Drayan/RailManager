@@ -15,17 +15,42 @@
     <% end %>
   </h5>
   <div class="card-body">
-    <ul>
-      <% @customer.order_rules.each do |rule| %>
-        <li>
-          <%= rule.commodity %> | <%= rule.max_cars %> <%= rule.car_type.name %>
-          <%= link_to "Edit", edit_customer_order_rule_path(@customer, rule) %>
-          <%= link_to "Delete", customer_order_rule_path(@customer, rule), data: {
-            turbo_method: :delete,
-            turbo_confirm: "Are you sure?"
-          }%>
-        </li>
-      <% end %>
-    </ul>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Car type</th>
+          <th>Commodity</th>
+          <th>Capacity</th>
+          <th>Current</th>
+          <th>Dropoff (L/E)</th>
+          <th>Manutention</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @customer.order_rules.each do |rule| %>
+          <tr>
+            <td><%= rule.car_type.name %></td>
+            <td><%= rule.commodity %></td>
+            <td><%= rule.max_cars %></td>
+            <td><%= rule.orders.sum(:ordered_count) %></td>
+            <td><%= rule.is_loaded ? "Loaded" : "Empty" %></td>
+            <td><%= rule.manutention_time %>h</td>
+            <td>
+              <%= link_to "Edit", edit_customer_order_rule_path(@customer, rule) %>
+              <%= link_to "Delete", customer_order_rule_path(@customer, rule), data: {
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure?"
+              }%>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <p class="fs-7">
+      Capacity = Maximum cars capacity allowed on the customer track<br />
+      Current = Current cars on the track AND enroute
+    </p>
   </div>
 </div>

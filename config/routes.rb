@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   resources :tracks
   resources :trains
   post "/trains/spawn" => "trains#spawn_train"
+  resources :local_trains
   resources :spawn_points
   resources :supply_train_blueprints
 
