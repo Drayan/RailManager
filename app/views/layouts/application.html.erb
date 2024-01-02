@@ -12,62 +12,7 @@
 
   <body>
     <main class="d-flex flex-nowrap">
-      <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
-        <%= link_to dashboard_path, { class: "d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none" } do %>
-          <span class="fs-4">Rail Manager</span>
-        <% end %>
-        <hr>
-        <ul class="nav nav-pills flex-column mb-auto">
-          <li class="nav-item">
-            <% if current_page? customers_path %>
-              <%= link_to "Customers", customers_path, { class: "nav-link text-white active" } %>
-            <% else %>
-              <%= link_to "Customers", customers_path, { class: "nav-link text-white" } %>
-            <% end %>
-          </li>
-          <li class="nav-item">
-            <% if current_page? yards_path %>
-              <%= link_to "Yards", yards_path, { class: "nav-link text-white active" } %>
-            <% else %>
-              <%= link_to "Yards", yards_path, { class: "nav-link text-white" } %>
-            <% end %>
-          </li>
-        </ul>
-
-        <hr>
-        <h6 class="text-danger">Admin section</h6>
-        <div class="mb-1">
-          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                  data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
-            Data
-          </button>
-          <div class="collapse" id="home-collapse">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li>
-                <%= link_to "Local trains", local_trains_path, { class: "link-body-emphasis d-inline-flex text-decoration-none rounded" } %>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <hr>
-
-        <div class="dropdown">
-          <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-             data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-            <strong>User</strong>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item text-danger" href="#">Sign out</a></li>
-          </ul>
-        </div>
-      </div>
+      <%= render "layouts/sidebar" %>
       <div class="b-example-divider m-3">
         <%= yield %>
       </div>

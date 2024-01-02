@@ -1,0 +1,25 @@
+<h6 class="text-danger">Admin section</h6>
+<% collapsed = not(current_page? car_types_path or current_page? local_trains_path or current_page? yards_path) %>
+<div class="mb-1 dropdown">
+  <a class="d-flex btn btn-toggle align-items-center rounded border-0 <%= collapsed ? "collapsed": "" %>"
+     data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="<%= collapsed ? "false" : "true" %>">
+    Data
+  </a>
+  <div class="collapse <%= collapsed ? "" : "show" %>" id="home-collapse">
+    <ul class="nav nav-pills flex-column btn-toggle-nav list-unstyled fw-normal pb-1 small">
+      <li class="nav-item">
+        <%= link_to "Car types", car_types_path, { class: "nav-link text-white rounded" } %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Local trains", local_trains_path, { class: "nav-link text-white rounded" } %>
+      </li>
+      <li class="nav-item">
+        <% if current_page? yards_path %>
+          <%= link_to "Yards", yards_path, { class: "nav-link text-white rounded active" } %>
+        <% else %>
+          <%= link_to "Yards", yards_path, { class: "nav-link text-white rounded" } %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>
